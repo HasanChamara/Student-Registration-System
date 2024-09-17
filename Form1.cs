@@ -15,6 +15,7 @@ namespace StudentRegistrationSystem
         public Form1()
         {
             InitializeComponent();
+            // This is the constructor of the form
         }
     }
 }
