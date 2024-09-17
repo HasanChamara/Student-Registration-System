@@ -79,3 +79,4 @@ E:\C# Projects\Github Repos\Student-Registration-System\bin\Debug\zh-Hans\Micros
 E:\C# Projects\Github Repos\Student-Registration-System\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 E:\C# Projects\Github Repos\Student-Registration-System\obj\Debug\StudentR.77D30381.Up2Date
 E:\C# Projects\Github Repos\Student-Registration-System\obj\Debug\StudentRegistrationSystem.Form1.resources
+E:\C# Projects\Github Repos\Student-Registration-System\obj\Debug\StudentRegistrationSystem.frmRegistration.resources
