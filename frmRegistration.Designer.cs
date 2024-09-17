@@ -438,6 +438,7 @@
             this.linkExit.TabIndex = 4;
             this.linkExit.TabStop = true;
             this.linkExit.Text = "Exit";
+            this.linkExit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkExit_LinkClicked);
             // 
             // linkLogout
             // 
@@ -449,6 +450,7 @@
             this.linkLogout.TabIndex = 5;
             this.linkLogout.TabStop = true;
             this.linkLogout.Text = "Logout";
+            this.linkLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLogout_LinkClicked);
             // 
             // frmRegistration
             // 

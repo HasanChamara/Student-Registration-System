@@ -255,7 +255,7 @@ namespace StudentRegistrationSystem
                 cm = new SqlCommand("DELETE FROM register WHERE regNo = @regNo", cn);
                 cm.Parameters.AddWithValue("@regNo", regno);
 
-                MessageBox.Show("Are you sure you want to delete this record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                MessageBox.Show("Are you sure you want to delete this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (DialogResult == DialogResult.Yes)
                 {
@@ -281,6 +281,18 @@ namespace StudentRegistrationSystem
             {
                 cn.Close();
             }
+        }
+
+        private void linkExit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void linkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Form1 frm1 = new Form1();
+            frm1.Show();
         }
     }
 }

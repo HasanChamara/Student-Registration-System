@@ -28,14 +28,44 @@ namespace StudentRegistrationSystem
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-            if (username == "admin" && password == "1234")
+            cn = new SqlConnection(dbcon.MyConnection());
+            cn.Open();
+            cm = new SqlCommand("select * from Logins where username = @username and password = @password", cn);
+            cm.Parameters.AddWithValue("@username", username);
+            cm.Parameters.AddWithValue("@password", password);
+            SqlDataReader dr = cm.ExecuteReader();
+            dr.Read();
+            if (dr.HasRows)
             {
-                MessageBox.Show("Welcome to the Student Registration System", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
+                frmRegistration frm = new frmRegistration();
+                frm.Show();
+            }
+            else if (username == "" || password == "")
+            {
+                MessageBox.Show("Please enter Username and Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Clear();
+            }
+            else if (username == "admin" || password == "1234")
+            {
+                this.Hide();
+                frmRegistration frm = new frmRegistration();
+                frm.Show();
             }
             else
             {
                 MessageBox.Show("Invalid Login credentials, Please check Username or Password and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Clear();
             }
+            dr.Close();
+            cn.Close();
+        }
+
+        private void Clear() 
+        {
+            txtUsername.Clear();
+            txtPassword.Clear();
+            txtUsername.Focus();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -43,13 +73,14 @@ namespace StudentRegistrationSystem
             //clear the textboxes
             txtUsername.Clear();
             txtPassword.Clear();
-            txtUsername.Focus();
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-           //exit the application
+            //exit the application
             Application.Exit();
         }
     }
 }
+
