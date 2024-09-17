@@ -21,7 +21,9 @@ namespace StudentRegistrationSystem
             InitializeComponent();
             cn = new SqlConnection(dbcon.MyConnection());
             cn.Open();
-            MessageBox.Show("Connection Successful");
+            //MessageBox.Show("Connection Successful");
         }
+
+        
     }
 }
