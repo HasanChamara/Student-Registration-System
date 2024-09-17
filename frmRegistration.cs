@@ -46,7 +46,6 @@ namespace StudentRegistrationSystem
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            //get the values from the textboxes and save the data to the database table name Registration
             string regno = comboRegNo.Text;
             string firstname = txtFirstname.Text;
             string lastname = txtLastname.Text;
@@ -62,14 +61,14 @@ namespace StudentRegistrationSystem
 
             try
             {
-                cn.ConnectionString = dbcon.MyConnection(); // Your connection string function
+                cn.ConnectionString = dbcon.MyConnection();
                 cn.Open();
 
-                // Insert query with parameters
+
                 cm = new SqlCommand("INSERT INTO register (regNo, firstName, lastName, dateOfBirth, gender, address, email, mobilePhone, homePhone, parentName, nic, contactNo) " +
                                     "VALUES (@regNo, @firstName, @lastName, @dateOfBirth, @gender, @address, @email, @mobilePhone, @homePhone, @parentName, @nic, @contactNo)", cn);
 
-                // Assigning values to the parameters
+
                 cm.Parameters.AddWithValue("@regNo", regno);
                 cm.Parameters.AddWithValue("@firstName", firstname);
                 cm.Parameters.AddWithValue("@lastName", lastname);
@@ -83,7 +82,7 @@ namespace StudentRegistrationSystem
                 cm.Parameters.AddWithValue("@nic", nic);
                 cm.Parameters.AddWithValue("@contactNo", contactno);
 
-                // Execute the query
+
                 cm.ExecuteNonQuery();
 
                 MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -145,7 +144,7 @@ namespace StudentRegistrationSystem
                     txtLastname.Text = dr["lastName"].ToString();
                     dateTimePicker1.Value = Convert.ToDateTime(dr["dateOfBirth"].ToString());
 
-                    string databaseGender = dr["gender"].ToString(); // Assuming "gender" is your column name
+                    string databaseGender = dr["gender"].ToString();
                     
                     if (databaseGender == "Male")
                     {
@@ -181,7 +180,7 @@ namespace StudentRegistrationSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //get the values from the textboxes and update the data to the database table name register
+
 
             string regno = comboRegNo.Text;
             string firstname = txtFirstname.Text;
@@ -244,21 +243,22 @@ namespace StudentRegistrationSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //get the values from the textboxes and delete the data from the database table name register
+
             string regno = comboRegNo.Text;
 
-            try
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                cn.ConnectionString = dbcon.MyConnection();
-                cn.Open();
-
-                cm = new SqlCommand("DELETE FROM register WHERE regNo = @regNo", cn);
-                cm.Parameters.AddWithValue("@regNo", regno);
-
-                MessageBox.Show("Are you sure you want to delete this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (DialogResult == DialogResult.Yes)
+                try
                 {
+                    cn.ConnectionString = dbcon.MyConnection();
+                    cn.Open();
+
+                    cm = new SqlCommand("DELETE FROM register WHERE regNo = @regNo", cn);
+                    cm.Parameters.AddWithValue("@regNo", regno);
+
+                    
                     int rowsAffected = cm.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -268,18 +268,17 @@ namespace StudentRegistrationSystem
                     }
                     else
                     {
-                        MessageBox.Show("No records deleted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No records deleted. Check if the record exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                cn.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    cn.Close();
+                }
             }
         }
 
@@ -294,5 +293,6 @@ namespace StudentRegistrationSystem
             Form1 frm1 = new Form1();
             frm1.Show();
         }
+
     }
 }

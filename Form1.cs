@@ -23,7 +23,6 @@ namespace StudentRegistrationSystem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // check if the username and password are admin and 1234, display the message box
 
             string username = txtUsername.Text;
             string password = txtPassword.Text;
@@ -46,7 +45,7 @@ namespace StudentRegistrationSystem
                 MessageBox.Show("Please enter Username and Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Clear();
             }
-            else if (username == "admin" || password == "1234")
+            else if (username == "admin" || password == "Skills@123")
             {
                 this.Hide();
                 frmRegistration frm = new frmRegistration();
@@ -70,16 +69,18 @@ namespace StudentRegistrationSystem
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //clear the textboxes
-            txtUsername.Clear();
-            txtPassword.Clear();
+            Clear();
 
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //exit the application
-            Application.Exit();
+            DialogResult dr = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        
         }
     }
 }

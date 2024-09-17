@@ -10,8 +10,8 @@ namespace StudentRegistrationSystem
     {
         public string MyConnection()
         {
-           string conn = @"Data Source=DESKTOP-REGH4GI\SQLEXPRESS;Initial Catalog=Student;Integrated Security=True;";
-            return conn; //this is the connection string
+            string conn = @"Data Source=DESKTOP-REGH4GI\SQLEXPRESS;Initial Catalog=Student;Integrated Security=True;";
+            return conn;
         }
     }
 }
