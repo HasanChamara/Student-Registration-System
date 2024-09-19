@@ -45,7 +45,7 @@ namespace StudentRegistrationSystem
                 MessageBox.Show("Please enter Username and Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Clear();
             }
-            else if (username == "admin" || password == "Skills@123")
+            else if (username == "Admin" || password == "Skills@123")
             {
                 this.Hide();
                 frmRegistration frm = new frmRegistration();
